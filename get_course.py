@@ -11,12 +11,12 @@ def get_course(chto='BTCRUB', valut=False, key_list=False):
         cours = req['data']
         return cours
     else:
-        url = f'https://currate.ru/api/?get=rates&pairs={chto}&key={key}'
+        url = f'https://currate.ru/api/?get=rates&pairs={chto.upper()}&key={key}'
         req = requests.get(url).json()
-        cours = float(req['data'][chto])
+        cours = float(req['data'][chto.upper()])
         cours = round(cours, 2)
 
-        if key:
+        if valut:
             return str(cours) + f' {chto[3:].lower()}'
         return cours
 
